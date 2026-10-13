@@ -1,1 +1,55 @@
-<!DOCTYPE html><html><body><h1>Play</h1><button id='playButton'>PLAY</button><script src='../js/game.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Légendaire - Jouer</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+
+    <h1>⚔️ Battle Légendaire ⚔️</h1>
+
+    <div class="card">
+        <h2>👤 Ton héros</h2>
+        <p>❤️ Vie : <span id="health">100</span></p>
+        <p>⚔️ Attaque : <span id="attack">10</span></p>
+        <p>🛡️ Défense : <span id="defense">5</span></p>
+        <p>⭐ Niveau : <span id="level">1</span></p>
+        <p>💰 Pièces : <span id="coins">0</span></p>
+    </div>
+
+    <div class="card">
+        <h2>🐺 Ennemi</h2>
+        <p>Nom : Loup</p>
+        <p>❤️ Vie : <span id="enemyHealth">50</span></p>
+    </div>
+
+    <div class="card">
+        <button onclick="attackEnemy()">
+            ⚔️ Attaquer
+        </button>
+
+        <button onclick="heal(20)">
+            ❤️ Potion
+        </button>
+
+        <button onclick="levelUp()">
+            ⭐ Monter de niveau
+        </button>
+    </div>
+
+    <div class="card">
+        <button onclick="window.location.href='home.html'">
+            ⬅ Retour au menu
+        </button>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
