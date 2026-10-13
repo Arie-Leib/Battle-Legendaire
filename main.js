@@ -1,78 +1,196 @@
-// ===============================
-// Battle Légendaire - main.js
-// ===============================
 
+
+// ===============================
 // Statistiques du joueur
-let player = {
+// ===============================
+const player = {
+    name: "Héros",
     health: 100,
+    maxHealth: 100,
     attack: 10,
     defense: 5,
     coins: 0,
-    level: 1
+    level: 1,
+    potions: 3
 };
 
+// ===============================
+// Statistiques du loup
+// ===============================
+const wolf = {
+    name: "Loup",
+    health: 50,
+    maxHealth: 50,
+    attack: 8,
+    defense: 2,
+    reward: 10,
+    alive: true
+};
+
+// ===============================
 // Initialisation du jeu
+// ===============================
 function initGame() {
-    console.log("Bienvenue dans Battle Légendaire !");
     updateInterface();
 }
 
-// Met à jour les informations affichées
+window.onload = initGame;
+
+// Démarrage automatique
+window.onload = initGame;
+// ===============================
+// Mise à jour de l'interface
+// ===============================
 function updateInterface() {
 
-    const coins = document.getElementById("coins");
-    if (coins) {
-        coins.textContent = player.coins;
-    }
+    const health = document.getElementById("health");
+    if (health) health.textContent = player.health;
+
+    const attack = document.getElementById("attack");
+    if (attack) attack.textContent = player.attack;
+
+    const defense = document.getElementById("defense");
+    if (defense) defense.textContent = player.defense;
 
     const level = document.getElementById("level");
-    if (level) {
-        level.textContent = player.level;
-    }
+    if (level) level.textContent = player.level;
+
+    const coins = document.getElementById("coins");
+    if (coins) coins.textContent = player.coins;
+
+    const wolfHealth = document.getElementById("wolfHealth");
+    if (wolfHealth) wolfHealth.textContent = wolf.health;
 }
 
+// ===============================
 // Ajouter des pièces
+// ===============================
 function addCoins(amount) {
     player.coins += amount;
     updateInterface();
 }
 
-// Perdre des points de vie
-function takeDamage(amount) {
-    player.health -= amount;
+// ===============================
+// Soigner le joueur
+// ===============================
+function usePotion() {
+
+    if (player.potions <= 0) {
+        alert("Tu n'as plus de potion !");
+        return;
+    }
+
+    player.potions--;
+
+    player.health += 30;
+
+    if (player.health > player.maxHealth) {
+        player.health = player.maxHealth;
+    }
+
+    updateInterface();
+}// ===============================
+// Combat contre le loup
+// ===============================
+function attackWolf() {
+
+    if (!wolf.alive) {
+        alert("Le loup est déjà vaincu !");
+        return;
+    }
+
+    // Le héros attaque
+    let damage = player.attack - wolf.defense;
+
+    if (damage < 1) {
+        damage = 1;
+    }
+
+    wolf.health -= damage;
+
+    if (wolf.health < 0) {
+        wolf.health = 0;
+    }
+
+    updateInterface();
+
+    alert("Tu attaques le loup et tu lui infliges " + damage + " dégâts !");
+
+    // Victoire
+    if (wolf.health <= 0) {
+        wolf.alive = false;
+
+        addCoins(wolf.reward);
+
+        alert("🏆 Tu as vaincu le loup !");
+        return;
+    }
+
+    // Le loup attaque en retour
+    let wolfDamage = wolf.attack - player.defense;
+
+    if (wolfDamage < 1) {
+        wolfDamage = 1;
+    }
+
+    player.health -= wolfDamage;
 
     if (player.health < 0) {
         player.health = 0;
     }
 
     updateInterface();
-}
 
-// Soigner le joueur
-function heal(amount) {
-    player.health += amount;
+    alert("Le loup t'attaque et te fait " + wolfDamage + " dégâts !");
 
-    if (player.health > 100) {
-        player.health = 100;
+    // Défaite
+    if (player.health <= 0) {
+        alert("💀 Tu as été vaincu !");
     }
-
-    updateInterface();
-}
-
+}// ===============================
 // Monter de niveau
+// ===============================
 function levelUp() {
-    player.level++;
-    player.attack += 2;
-    player.defense += 1;
 
-    alert("🎉 Niveau " + player.level + " !");
+    player.level++;
+    player.maxHealth += 20;
+    player.health = player.maxHealth;
+    player.attack += 5;
+    player.defense += 2;
+
+    alert("🎉 Bravo ! Tu passes au niveau " + player.level + " !");
+
     updateInterface();
 }
 
-// Aller vers une autre page
-function goTo(page) {
-    window.location.href = page;
+// ===============================
+// Recommencer un combat
+// ===============================
+function resetWolf() {
+
+    wolf.health = wolf.maxHealth;
+    wolf.alive = true;
+
+    updateInterface();
 }
 
-// Démarrage automatique
-window.onload = initGame;
+// ===============================
+// Retour au menu
+// ===============================
+function backToMenu() {
+    window.location.href = "index.html";
+}
+
+// ===============================
+// Aller vers l'inventaire
+// ===============================
+function openInventory() {
+    window.location.href = "inventory.html";
+}
+
+// ===============================
+// Aller vers la boutique
+// ===============================
+function openShop() {
+    window.location.href = "shops.html";
+}
