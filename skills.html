@@ -1,1 +1,65 @@
-<html><body><h1>Compétences</h1></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Légendaire - Compétences</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+
+    <h1>⭐ Compétences</h1>
+
+    <p>Améliore ton héros pour devenir plus puissant !</p>
+
+    <div class="card">
+        <h2>⚔️ Attaque</h2>
+        <p>Niveau : <span id="attackLevel">1</span></p>
+        <p>Dégâts : +10</p>
+        <button>Améliorer</button>
+    </div>
+
+    <div class="card">
+        <h2>🛡️ Défense</h2>
+        <p>Niveau : <span id="defenseLevel">1</span></p>
+        <p>Réduction des dégâts : +5</p>
+        <button>Améliorer</button>
+    </div>
+
+    <div class="card">
+        <h2>❤️ Vie</h2>
+        <p>Niveau : <span id="healthLevel">1</span></p>
+        <p>Vie maximale : 100</p>
+        <button>Améliorer</button>
+    </div>
+
+    <div class="card">
+        <h2>⚡ Vitesse</h2>
+        <p>Niveau : <span id="speedLevel">1</span></p>
+        <p>Déplacement plus rapide.</p>
+        <button>Améliorer</button>
+    </div>
+
+    <div class="card">
+        <h2>🍀 Chance</h2>
+        <p>Niveau : <span id="luckLevel">1</span></p>
+        <p>Augmente les récompenses et les coffres rares.</p>
+        <button>Améliorer</button>
+    </div>
+
+    <div class="card">
+        <h2>💰 Pièces</h2>
+        <p>Pièces disponibles : <span id="coins">0</span></p>
+    </div>
+
+    <button onclick="window.location.href='home.html'">
+        ⬅ Retour au menu
+    </button>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
