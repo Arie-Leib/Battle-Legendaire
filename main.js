@@ -194,3 +194,90 @@ function openInventory() {
 function openShop() {
     window.location.href = "shops.html";
 }
+// ===============================
+// Vérifier si le joueur est vivant
+// ===============================
+function checkPlayer() {
+
+    if (player.health <= 0) {
+        player.health = 0;
+
+        updateInterface();
+
+        alert("💀 Tu as perdu la bataille !");
+        return false;
+    }
+
+    return true;
+}
+
+// ===============================
+// Vérifier si le loup est vaincu
+// ===============================
+function checkWolf() {
+
+    if (wolf.health <= 0) {
+
+        wolf.health = 0;
+        wolf.alive = false;
+
+        player.coins += wolf.reward;
+
+        alert("🏆 Tu as vaincu le loup !");
+        alert("💰 Tu gagnes " + wolf.reward + " pièces !");
+
+        updateInterface();
+
+        return true;
+    }
+
+    return false;
+}
+
+// ===============================
+// Nouvelle bataille
+// ===============================
+function newBattle() {
+
+    wolf.health = wolf.maxHealth;
+    wolf.alive = true;
+
+    updateInterface();
+}// ===============================
+// Fonctions des boutons
+// ===============================
+
+// Bouton Attaquer
+function attack() {
+    attackWolf();
+}
+
+// Bouton Potion
+function potion() {
+    usePotion();
+}
+
+// Bouton Monter de niveau
+function levelButton() {
+    levelUp();
+}
+
+// Bouton Inventaire
+function inventory() {
+    alert("Inventaire (bientôt disponible)");
+}
+
+// Bouton Boutique
+function shop() {
+    window.location.href = "shops.html";
+}
+
+// Bouton Retour
+function back() {
+    window.location.href = "index.html";
+}
+
+// ===============================
+// Fin du fichier
+// ===============================
+updateInterface();
