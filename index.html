@@ -25,3 +25,48 @@
 <h2>🐺 Loup</h2>
 
 <p>❤️ Vie : <span id="wolfHealth">50</span></p>
+<hr>
+
+<div class="actions">
+    <button onclick="attack()">
+        ⚔️ Attaquer
+    </button>
+
+    <button onclick="potion()">
+        🧪 Potion
+    </button>
+
+    <button onclick="levelButton()">
+        ⬆️ Monter de niveau
+    </button>
+</div>
+
+<br>
+
+<div class="menu">
+    <button onclick="inventory()">
+        🎒 Inventaire
+    </button>
+
+    <button onclick="shop()">
+        🛒 Boutique
+    </button>
+
+    <button onclick="back()">
+        🏠 Retour au menu
+    </button>
+</div>
+
+<hr><div class="battle-log">
+    <h2>📜 Journal du combat</h2>
+    <p id="message">
+        Le combat va commencer...
+    </p>
+</div>
+
+<hr>
+
+<script src="main.js"></script>
+
+</body>
+</html>
