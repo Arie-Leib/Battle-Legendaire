@@ -281,3 +281,27 @@ function back() {
 // Fin du fichier
 // ===============================
 updateInterface();
+// ===============================
+// Préparer le combat suivant
+// ===============================
+function nextBattle() {
+
+    wolf.alive = true;
+
+    wolf.maxHealth += 10;
+    wolf.health = wolf.maxHealth;
+
+    wolf.attack += 2;
+
+    updateInterface();
+}
+
+// ===============================
+// À mettre dans la fonction de victoire
+// ===============================
+// Juste après cette ligne :
+// alert("🏆 Tu as vaincu le loup !");
+//
+// ajoute cette ligne :
+//
+// nextBattle();
