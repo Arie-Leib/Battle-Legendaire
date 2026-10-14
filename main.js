@@ -305,3 +305,4 @@ function nextBattle() {
 // ajoute cette ligne :
 //
 // nextBattle();
+function attack...
