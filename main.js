@@ -100,30 +100,18 @@ function attackWolf() {
     }
 
     // Le héros attaque
-    let damage = player.attack - wolf.defense;
+   // Victoire
+if (wolf.health <= 0) {
+    wolf.alive = false;
 
-    if (damage < 1) {
-        damage = 1;
-    }
+    addCoins(wolf.reward);
 
-    wolf.health -= damage;
+    alert("🏆 Tu as vaincu le loup !");
 
-    if (wolf.health < 0) {
-        wolf.health = 0;
-    }
+    nextBattle();
 
-    updateInterface();
-
-    alert("Tu attaques le loup et tu lui infliges " + damage + " dégâts !");
-
-    // Victoire
-    if (wolf.health <= 0) {
-        wolf.alive = false;
-
-        addCoins(wolf.reward);
-
-        alert("🏆 Tu as vaincu le loup !");
-        return;
+    return;
+}
     }
 
     // Le loup attaque en retour
