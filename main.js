@@ -92,6 +92,9 @@ function usePotion() {
 }// ===============================
 // Combat contre le loup
 // ===============================
+// ===============================
+// Combat contre le loup
+// ===============================
 function attackWolf() {
 
     if (!wolf.alive) {
@@ -100,19 +103,57 @@ function attackWolf() {
     }
 
     // Le héros attaque
-   // Victoire
-if (wolf.health <= 0) {
-    wolf.alive = false;
+    let damage = player.attack - wolf.defense;
 
-    addCoins(wolf.reward);
-
-    alert("🏆 Tu as vaincu le loup !");
-
-    nextBattle();
-
-    return;
-}
+    if (damage < 1) {
+        damage = 1;
     }
+
+    wolf.health -= damage;
+
+    if (wolf.health < 0) {
+        wolf.health = 0;
+    }
+
+    updateInterface();
+
+    alert("Tu attaques le loup et tu lui infliges " + damage + " dégâts !");
+
+    // Victoire
+    if (wolf.health <= 0) {
+
+        wolf.alive = false;
+
+        addCoins(wolf.reward);
+
+        alert("🏆 Tu as vaincu le loup !");
+
+        nextBattle();
+
+        return;
+    }
+
+    // Le loup attaque en retour
+    let wolfDamage = wolf.attack - player.defense;
+
+    if (wolfDamage < 1) {
+        wolfDamage = 1;
+    }
+
+    player.health -= wolfDamage;
+
+    if (player.health < 0) {
+        player.health = 0;
+    }
+
+    updateInterface();
+
+    alert("Le loup t'attaque et te fait " + wolfDamage + " dégâts !");
+
+    if (player.health <= 0) {
+        alert("💀 Tu as été vaincu !");
+    }
+}
 
     // Le loup attaque en retour
     let wolfDamage = wolf.attack - player.defense;
@@ -284,13 +325,4 @@ function nextBattle() {
     updateInterface();
 }
 
-// ===============================
-// À mettre dans la fonction de victoire
-// ===============================
-// Juste après cette ligne :
-// alert("🏆 Tu as vaincu le loup !");
-//
-// ajoute cette ligne :
-//
-// nextBattle();
-function attack...
+
